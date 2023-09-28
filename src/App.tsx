@@ -9,7 +9,7 @@ function App() {
     <>
       <Header />
       <LandingBuilder />
-      <SliderSVPage />
+      {/* <SliderSVPage /> */}
       {/* <MainPage /> */}
       {/* <CvTemplate /> */}
     </>

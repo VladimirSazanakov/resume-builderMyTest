@@ -8,8 +8,8 @@ function App() {
   return (
     <>
       <Header />
-      <LandingBuilder />
-      {/* <SliderSVPage /> */}
+      {/* <LandingBuilder /> */}
+      <SliderSVPage />
       {/* <MainPage /> */}
       {/* <CvTemplate /> */}
     </>

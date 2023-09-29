@@ -2,14 +2,25 @@
   height: 100%;
   width: 100vw;
   display: flex;
+  padding: 50px;
+  padding-right: 100px;
+  box-sizing: border-box;
+  transition-timing-function: linear;
 }
 
 .swiper1{
   width: 100%;
+  transition-timing-function: linear;
+  .swiper-wrapper{
+    transition-timing-function: linear;
+  }
 }
-.SwiperSliderContainer{
-  width: min-content;
-}
-.SwiperSliderContainer{
+
+// .swiper1 .swiper-wrapper {
+//   transition-timing-function: linear;
+// }
+
+.swiper1 .SwiperSliderContainer{
   width: 430px;
+  transition-timing-function: linear;
 }

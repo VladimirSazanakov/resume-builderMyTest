@@ -43,7 +43,10 @@ enum SliderEffects {
 const sliderInit = {
   effect: 'default',
   loop: false,
+  navigation: true,
+  pagination: true,
   spaceBetween: 10,
+  slidesPerView: 1,
 }
 
 
@@ -77,9 +80,10 @@ const SliderSV = (props: any) => {
         modules={[FreeMode, Autoplay, Mousewheel, EffectCoverflow, EffectCards, EffectCreative, EffectCube, EffectFade, EffectFlip, Virtual, Navigation, Pagination]}
         // modules={[Virtual]}
         spaceBetween={sliderPropsTest.spaceBetween.toString()}
-        navigation={true}
-        pagination={true}
-        slidesPerView={1}
+        navigation={sliderPropsTest.navigation}
+        pagination={sliderPropsTest.pagination}
+        // slidesPerView={sliderPropsTest.slidesPerView}
+        slidesPerView={'auto'}
 
         // mousewheel
         // freeMode

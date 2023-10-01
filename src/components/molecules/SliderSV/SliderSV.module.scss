@@ -1,4 +1,4 @@
-.swiperContainer{
+.swiperContainer {
   height: 100%;
   width: 100vw;
   display: flex;
@@ -8,10 +8,11 @@
   transition-timing-function: linear;
 }
 
-.swiper1{
+.swiper1 {
   width: 100%;
   transition-timing-function: linear;
-  .swiper-wrapper{
+
+  .swiper-wrapper {
     transition-timing-function: linear;
   }
 }
@@ -20,7 +21,17 @@
 //   transition-timing-function: linear;
 // }
 
-.swiper1 .SwiperSliderContainer{
-  width: 430px;
+.swiper1 .SwiperSliderContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   transition-timing-function: linear;
+}
+
+.swiperContainer {
+  background-color: aqua;
+  margin-top: 100px;
 }

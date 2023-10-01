@@ -13,7 +13,7 @@ import {
   Navigation,
   Pagination
 } from 'swiper/modules'
-import Slide from "../../atoms/Slide";
+// import Slide from "../../atoms/Slide";
 
 import style from './SliderSV.module.scss';
 import './SliderSV.module.scss';
@@ -26,10 +26,10 @@ import 'swiper/scss/pagination';
 import SwiperSVTweek from "../SwiperDVTweek";
 import { useEffect, useState } from "react";
 
-type TSliderProp = {
-  spaceBetween: number,
-  autoplay: boolean,
-}
+// type TSliderProp = {
+//   spaceBetween: number,
+//   autoplay: boolean,
+// }
 
 enum SliderEffects {
   Fade = 'fade',
@@ -54,7 +54,7 @@ const SliderSV = (props: any) => {
   const [sliderPropsTest, setSliderPropsTest] = useState(sliderInit);
   const slides = props.slides;
 
-  const sliderProps: TSliderProp = props.properties;
+  // const sliderProps: TSliderProp = props.properties;
   const effect: SliderEffects = props.effect;
   console.log(effect);
 

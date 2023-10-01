@@ -1,7 +1,7 @@
 import Slide from "../../components/atoms/Slide";
-import Slider from "../../components/molecules/Slider";
+// import Slider from "../../components/molecules/Slider";
 import SliderSV from "../../components/molecules/SliderSV";
-import SwiperSVTweek from "../../components/molecules/SwiperDVTweek";
+// import SwiperSVTweek from "../../components/molecules/SwiperDVTweek";
 
 enum SliderEffects {
   Default = 'default',

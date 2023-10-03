@@ -1,4 +1,4 @@
-import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import {
   FreeMode,
   Autoplay,
@@ -26,7 +26,7 @@ import 'swiper/scss/pagination';
 import 'swiper/scss/effect-cards';
 import 'swiper/scss/effect-cube';
 import 'swiper/scss/effect-flip';
-import 'swiper/scss/effect-fade';
+import 'swiper/css/effect-fade';
 import 'swiper/scss/effect-coverflow';
 import SwiperSVTweek from "../SwiperDVTweek";
 import { useEffect, useState } from "react";
@@ -111,11 +111,6 @@ const SliderSV = (props: any) => {
       // onSwiper={(swiper: any) => console.log('swiper')}
       // initialSlide={0}
       >
-        {function SwiperUpdate() {
-          const swiper = useSwiper();
-          swiper.update();
-        }}
-
         {sliderSlides}
         {/* <SwiperSlide className={style.SwiperSliderContainer}><Slide /></SwiperSlide>
         <SwiperSlide className={style.SwiperSliderContainer}><Slide /></SwiperSlide>

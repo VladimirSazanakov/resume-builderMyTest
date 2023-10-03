@@ -121,6 +121,7 @@ const SwiperSVTweek: React.FC<ISwiperSVTweek> = (props) => {
           onChange={handleSliderStyle}
         >
           <MenuItem value={SliderEffects.Default}>Default</MenuItem>
+          <MenuItem value={SliderEffects.Fade}>Fade</MenuItem>
           <MenuItem value={SliderEffects.Cards}>Cards</MenuItem>
           <MenuItem value={SliderEffects.Coverflow}>Coverflow</MenuItem>
           <MenuItem value={SliderEffects.Cube}>Cube</MenuItem>

@@ -23,6 +23,11 @@ import 'swiper/scss';
 import 'swiper/scss/virtual';
 import 'swiper/scss/navigation';
 import 'swiper/scss/pagination';
+import 'swiper/scss/effect-cards';
+import 'swiper/scss/effect-cube';
+import 'swiper/scss/effect-flip';
+import 'swiper/scss/effect-fade';
+import 'swiper/scss/effect-coverflow';
 import SwiperSVTweek from "../SwiperDVTweek";
 import { useEffect, useState } from "react";
 
@@ -82,8 +87,9 @@ const SliderSV = (props: any) => {
         spaceBetween={sliderPropsTest.spaceBetween.toString()}
         navigation={sliderPropsTest.navigation}
         pagination={sliderPropsTest.pagination}
-        // slidesPerView={sliderPropsTest.slidesPerView}
-        slidesPerView={'auto'}
+        slidesPerView={sliderPropsTest.slidesPerView}
+
+        // slidesPerView={'auto'}
 
         // mousewheel
         // freeMode

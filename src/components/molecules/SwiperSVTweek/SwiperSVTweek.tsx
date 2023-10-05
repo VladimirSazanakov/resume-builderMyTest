@@ -112,13 +112,14 @@ const SwiperSVTweek: React.FC<ISwiperSVTweek> = (props) => {
   return (
     <div className={style.SwiperSVTweek}>
       <div key={Date.now()} className={mainTweekClasses.join(' ')}>
-        <InputLabel id='SliderStyle'>Slider Style</InputLabel>
+        <InputLabel size="small" id='SliderStyle'>Slider Style</InputLabel>
         <Select
           labelId="SliderStyle"
           id="SliderStyleSelect"
           value={sliderStyle}
           label="Slider Style"
           onChange={handleSliderStyle}
+          size="small"
         >
           <MenuItem value={SliderEffects.Default}>Default</MenuItem>
           <MenuItem value={SliderEffects.Fade}>Fade</MenuItem>

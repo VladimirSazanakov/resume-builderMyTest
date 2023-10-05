@@ -1,0 +1,18 @@
+@import "../../../assets/style/variables.scss";
+
+.SlideSVImage {
+  width: 100px;
+  border-radius: 4px;
+  opacity: 1;
+}
+
+.SlideSV {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  padding: 4px;
+  background: rgba(0, 0, 0, 0.591);
+  border-radius: 4px;
+}

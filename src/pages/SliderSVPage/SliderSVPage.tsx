@@ -24,8 +24,9 @@ const SliderSVPage = () => {
   return (
     <>
       {/* <SwiperSVTweek /> */}
-      <SliderSV slides={TestSliders} properties={{ spaceBetween: 100, autoplay: true }} effect={SliderEffects.Default} />
-      <SliderSV slides={Test2Sliders} properties={{ spaceBetween: 0, autoplay: false }} effect="flip" />
+      <SliderSV effect={SliderEffects.Coverflow} />
+      <SliderSV />
+      {/* <SliderSV slides={Test2Sliders} properties={{ spaceBetween: 0, autoplay: false }} effect="flip" /> */}
       {/* <Slider /> */}
     </>
   )

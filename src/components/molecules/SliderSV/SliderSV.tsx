@@ -13,7 +13,7 @@ import {
   Navigation,
   Pagination
 } from 'swiper/modules'
-// import Slide from "../../atoms/Slide";
+import SlideSV from "../../atoms/SlideSV";
 
 import style from './SliderSV.module.scss';
 import './SliderSV.module.scss';
@@ -28,8 +28,10 @@ import 'swiper/scss/effect-cube';
 import 'swiper/scss/effect-flip';
 import 'swiper/css/effect-fade';
 import 'swiper/scss/effect-coverflow';
+
 import SwiperSVTweek from "../SwiperSVTweek";
 import { useEffect, useState } from "react";
+import { defaulSlides } from "./DefaultSlides";
 
 // type TSliderProp = {
 //   spaceBetween: number,
@@ -54,16 +56,23 @@ const sliderInit = {
   slidesPerView: 1,
 }
 
+interface ISliderSVProps {
+  slides?: Array<string>
+  effect?: string
+}
 
-const SliderSV = (props: any) => {
+
+const SliderSV: React.FC<ISliderSVProps> = ({ slides = defaulSlides, effect = 'default' }) => {
   const [sliderPropsTest, setSliderPropsTest] = useState(sliderInit);
-  const slides = props.slides;
+  const slidesSlider = slides.map(el => {
+    return <SlideSV src={el} />
+  });
 
   // const sliderProps: TSliderProp = props.properties;
-  const effect: SliderEffects = props.effect;
+  // const effect = props.effect;
   console.log(effect);
 
-  const sliderSlides = slides.map((el: any, index: number) => {
+  const sliderSlides = slidesSlider.map((el: any, index: number) => {
     return (
       <SwiperSlide style={{ height: '100%' }} className={style.SwiperSliderContainer} virtualIndex={index}>{el}</SwiperSlide>
     )

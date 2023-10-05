@@ -28,7 +28,7 @@ import 'swiper/scss/effect-cube';
 import 'swiper/scss/effect-flip';
 import 'swiper/css/effect-fade';
 import 'swiper/scss/effect-coverflow';
-import SwiperSVTweek from "../SwiperDVTweek";
+import SwiperSVTweek from "../SwiperSVTweek";
 import { useEffect, useState } from "react";
 
 // type TSliderProp = {
@@ -88,6 +88,14 @@ const SliderSV = (props: any) => {
         navigation={sliderPropsTest.navigation}
         pagination={sliderPropsTest.pagination}
         slidesPerView={sliderPropsTest.slidesPerView}
+
+        coverflowEffect={{
+          rotate: 0,
+          stretch: 0,
+          depth: 100,
+          modifier: 2.5,
+        }
+        }
 
         // slidesPerView={'auto'}
 

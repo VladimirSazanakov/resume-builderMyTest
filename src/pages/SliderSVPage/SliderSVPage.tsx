@@ -25,7 +25,7 @@ const SliderSVPage = () => {
     <>
       {/* <SwiperSVTweek /> */}
       <SliderSV effect={SliderEffects.Coverflow} />
-      <SliderSV />
+      {/* <SliderSV /> */}
       {/* <SliderSV slides={Test2Sliders} properties={{ spaceBetween: 0, autoplay: false }} effect="flip" /> */}
       {/* <Slider /> */}
     </>

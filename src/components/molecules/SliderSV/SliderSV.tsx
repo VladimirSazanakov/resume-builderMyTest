@@ -103,6 +103,7 @@ const SliderSV: React.FC<ISliderSVProps> = ({ slides = defaulSlides, effect = 'd
           stretch: 0,
           depth: 100,
           modifier: 2.5,
+          slideShadows: false,
         }
         }
 

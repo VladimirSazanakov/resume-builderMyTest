@@ -1,35 +1,24 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import {
-  FreeMode,
   Autoplay,
   Mousewheel,
-  EffectCoverflow,
-  EffectCube,
   EffectCards,
-  EffectFade,
-  EffectCreative,
-  EffectFlip,
-  Virtual,
   Navigation,
-  Pagination
+  Pagination,
+  EffectCube
 } from 'swiper/modules'
 import SlideSV from "../../atoms/SlideSV";
 
 import style from './SliderSV.module.scss';
 import './SliderSV.module.scss';
-// import './stile.css';
 
 import 'swiper/scss';
-import 'swiper/scss/virtual';
 import 'swiper/scss/navigation';
 import 'swiper/scss/pagination';
 import 'swiper/scss/effect-cards';
 import 'swiper/scss/effect-cube';
-import 'swiper/scss/effect-flip';
-import 'swiper/css/effect-fade';
-import 'swiper/scss/effect-coverflow';
 
-import SwiperSVTweek from "../SwiperSVTweek";
+import SwiperSVTweekTest from "../SwiperSVTweekTest";
 import { useEffect, useState } from "react";
 import { defaulSlides } from "./DefaultSlides";
 
@@ -37,15 +26,6 @@ import { defaulSlides } from "./DefaultSlides";
 //   spaceBetween: number,
 //   autoplay: boolean,
 // }
-
-enum SliderEffects {
-  Fade = 'fade',
-  Cube = 'cube',
-  Coverflow = 'coverflow',
-  Flip = 'flip',
-  Cards = 'cards',
-  Creative = 'creative',
-}
 
 const sliderInit = {
   effect: 'default',
@@ -62,7 +42,7 @@ interface ISliderSVProps {
 }
 
 
-const SliderSV: React.FC<ISliderSVProps> = ({ slides = defaulSlides, effect = 'default' }) => {
+const SliderSVCardsTest: React.FC<ISliderSVProps> = ({ slides = defaulSlides, effect = 'default' }) => {
   const [sliderPropsTest, setSliderPropsTest] = useState(sliderInit);
   const slidesSlider = slides.map(el => {
     return <SlideSV src={el} />
@@ -74,7 +54,7 @@ const SliderSV: React.FC<ISliderSVProps> = ({ slides = defaulSlides, effect = 'd
 
   const sliderSlides = slidesSlider.map((el: any, index: number) => {
     return (
-      <SwiperSlide style={{ height: '100%' }} className={style.SwiperSliderContainer} virtualIndex={index}>{el}</SwiperSlide>
+      <SwiperSlide style={{ height: '100%', width: '200', alignItems: 'center', justifyContent: 'center' }} className={style.SwiperSliderContainer} virtualIndex={index}>{el}</SwiperSlide>
     )
   })
 
@@ -87,11 +67,11 @@ const SliderSV: React.FC<ISliderSVProps> = ({ slides = defaulSlides, effect = 'd
 
   return (
     <div className={style.swiperContainer}>
-      <SwiperSVTweek changeSlider={setSliderPropsTest} value={sliderPropsTest} />
+      <SwiperSVTweekTest changeSlider={setSliderPropsTest} value={sliderPropsTest} />
 
       <Swiper
         key={Date.now()}
-        modules={[FreeMode, Autoplay, Mousewheel, EffectCoverflow, EffectCards, EffectCreative, EffectCube, EffectFade, EffectFlip, Virtual, Navigation, Pagination]}
+        modules={[Autoplay, Mousewheel, EffectCards, EffectCube, Navigation, Pagination]}
         // modules={[Virtual]}
         spaceBetween={sliderPropsTest.spaceBetween.toString()}
         navigation={sliderPropsTest.navigation}
@@ -106,12 +86,20 @@ const SliderSV: React.FC<ISliderSVProps> = ({ slides = defaulSlides, effect = 'd
           slideShadows: false,
         }
         }
-
         cardsEffect={{
           slideShadows: false,
-          perSlideOffset: 15,
+          perSlideOffset: 20,
 
         }}
+
+        cubeEffect={{
+          shadow: true,
+          slideShadows: true,
+          shadowOffset: 20,
+          shadowScale: 0.94
+        }}
+
+        grabCursor={true}
 
         // slidesPerView={'auto'}
 
@@ -158,4 +146,4 @@ const SliderSV: React.FC<ISliderSVProps> = ({ slides = defaulSlides, effect = 'd
   )
 }
 
-export default SliderSV;
+export default SliderSVCardsTest;

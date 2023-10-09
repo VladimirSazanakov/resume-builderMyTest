@@ -1,6 +1,7 @@
 import Slide from "../../components/atoms/Slide";
 // import Slider from "../../components/molecules/Slider";
 import SliderSV from "../../components/molecules/SliderSV";
+import SliderSVCardsTest from "../../components/molecules/SliderSVCardsTest";
 // import SwiperSVTweek from "../../components/molecules/SwiperDVTweek";
 
 enum SliderEffects {
@@ -25,6 +26,7 @@ const SliderSVPage = () => {
     <>
       {/* <SwiperSVTweek /> */}
       <SliderSV effect={SliderEffects.Coverflow} />
+      <SliderSVCardsTest />
       {/* <SliderSV /> */}
       {/* <SliderSV slides={Test2Sliders} properties={{ spaceBetween: 0, autoplay: false }} effect="flip" /> */}
       {/* <Slider /> */}

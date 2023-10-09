@@ -1,0 +1,42 @@
+.SwiperSVTweek {
+  font-size: 8px;
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  z-index: 10;
+  height: min-content;
+  width: 200px;
+  background-color: rgba(250, 250, 250, 0.587);
+  // opacity: 0.5;
+  border-radius: 4px;
+  padding: 4px;
+  color: black;
+  // left: -150px;
+  transition: all 1s;
+}
+
+.title {
+  padding: 10px;
+  font-size: 12px;
+  font-family: sans-serif;
+  font-weight: 900;
+  text-align: center;
+  margin: 0;
+}
+
+.mainTweek {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.checkButtons {
+  font-size: 10px;
+}
+
+.disable {
+  max-height: 0px;
+  visibility: false;
+  display: false;
+}

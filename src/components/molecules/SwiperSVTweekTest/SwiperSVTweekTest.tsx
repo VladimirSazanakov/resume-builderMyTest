@@ -13,12 +13,20 @@ enum SliderEffects {
   Creative = 'creative',
 }
 
+type TSliderInit = {
+  effect: string,
+  loop: boolean,
+  navigation: boolean,
+  pagination: boolean,
+  spaceBetween: number,
+  slidesPerView: number | 'auto',
+}
 
 interface ISwiperSVTweek {
   props?: any
   sliderPropsTest?: any
-  changeSlider?: any
-  value?: any;
+  changeSlider: any,
+  value: TSliderInit;
 }
 
 const SwiperSVTweekTest: React.FC<ISwiperSVTweek> = (props) => {
@@ -36,7 +44,7 @@ const SwiperSVTweekTest: React.FC<ISwiperSVTweek> = (props) => {
 
   const onChangeLoop = (event: any) => {
     // console.log('Loop is', event.target.checked)
-    props.changeSlider((state: any) => {
+    props.changeSlider((state: TSliderInit) => {
       const loop = event.target.checked;
       let newState = { ...state, loop: loop };
       return newState;
@@ -68,8 +76,14 @@ const SwiperSVTweekTest: React.FC<ISwiperSVTweek> = (props) => {
       const effect = event.target.value as string;
       let newState = { ...state, effect: effect };
       let slidesPerView: number | string = 'auto';
-      if (effect === sliderStyle.cards) {
+
+      console.log('effect is', effect);
+
+      if (effect == SliderEffects.Cards || effect == SliderEffects.Flip || effect == SliderEffects.Fade) {
         newState.slidesPerView = 1;
+        console.log('state from tweek', newState);
+      } else {
+        newState.slidesPerView = 'auto';
       };
       return newState;
 
@@ -140,16 +154,8 @@ const SwiperSVTweekTest: React.FC<ISwiperSVTweek> = (props) => {
         <FormControlLabel className={style.checkButtons} control={<Checkbox size='small' checked={loopChecked} onChange={(event) => onChangeLoop(event)} />} label="Use Loop" />
         <FormControlLabel control={<Checkbox size="small" checked={navigation} onChange={(event) => onChangeNavigation(event)} />} label="Use Navigation" />
         <FormControlLabel control={<Checkbox size="small" checked={pagination} onChange={(event) => onChangePagination(event)} />} label="Use Pagination" />
-
-        {/* <div className={style.checkButtons}>
-          <input type="checkbox" id="testCheckBox" />
-          <label for="testCheckBox">Test</label>
-        </div> */}
-
         <TextField style={{ marginBottom: 5 }} label="Space Between" type="number" value={spaceBetween} onChange={handleSpaceBetween} />
-        {/* <TextField label="Slides Per View" type="number" value={slidesPerView} onChange={handleSlidesPerView} /> */}
       </div>
-      {/* <Button variant="text" onClick={handleButton}>settings</Button> */}
     </div>
   );
 };

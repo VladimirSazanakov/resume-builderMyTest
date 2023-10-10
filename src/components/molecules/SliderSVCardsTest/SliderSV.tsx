@@ -33,7 +33,16 @@ import { defaulSlides } from "./DefaultSlides";
 //   autoplay: boolean,
 // }
 
-const sliderInit = {
+type TSliderInit = {
+  effect: string,
+  loop: boolean,
+  navigation: boolean,
+  pagination: boolean,
+  spaceBetween: number,
+  slidesPerView: number | 'auto',
+}
+
+const sliderInit: TSliderInit = {
   effect: 'default',
   loop: false,
   navigation: true,

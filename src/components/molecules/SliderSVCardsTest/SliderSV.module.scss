@@ -13,12 +13,13 @@
 
 .swiper1 {
   height: auto;
-  width: 200px;
+  width: 100%;
   justify-content: center;
   align-items: center;
   // position: absolute;
   transition-timing-function: linear;
-  padding: 50px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 
   .swiper-wrapper {
     transition-timing-function: linear;

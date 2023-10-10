@@ -1,4 +1,4 @@
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide } from 'swiper/react';
 import {
   FreeMode,
   Autoplay,
@@ -10,9 +10,9 @@ import {
   EffectCreative,
   EffectFlip,
   Navigation,
-  Pagination
-} from 'swiper/modules'
-import SlideSV from "../../atoms/SlideSV";
+  Pagination,
+} from 'swiper/modules';
+import SlideSV from '../../atoms/SlideSV';
 
 import style from './SliderSV.module.scss';
 import './SliderSV.module.scss';
@@ -26,27 +26,18 @@ import 'swiper/scss/effect-flip';
 import 'swiper/css/effect-fade';
 import 'swiper/scss/effect-coverflow';
 
-import SwiperSVTweek from "../SwiperSVTweek";
-import { useState } from "react";
-import { defaulSlides } from "./DefaultSlides";
+import SwiperSVTweek from '../SwiperSVTweek';
+import { useState } from 'react';
+import { defaulSlides } from './DefaultSlides';
 
 type TSliderInit = {
-  effect: string,
-  loop: boolean,
-  navigation: boolean,
-  pagination: boolean,
-  spaceBetween: number,
-  slidesPerView: number | 'auto',
-}
-
-enum SliderEffects {
-  Fade = 'fade',
-  Cube = 'cube',
-  Coverflow = 'coverflow',
-  Flip = 'flip',
-  Cards = 'cards',
-  Creative = 'creative',
-}
+  effect: string;
+  loop: boolean;
+  navigation: boolean;
+  pagination: boolean;
+  spaceBetween: number;
+  slidesPerView: number | 'auto';
+};
 
 const sliderInit: TSliderInit = {
   effect: 'default',
@@ -55,31 +46,36 @@ const sliderInit: TSliderInit = {
   pagination: true,
   spaceBetween: 10,
   slidesPerView: 'auto',
-}
+};
 
 interface ISliderSVProps {
-  slides?: Array<string>
-  effect?: string
+  slides?: Array<string>;
+  effect?: string;
 }
-
 
 const SliderSV: React.FC<ISliderSVProps> = ({ slides = defaulSlides }) => {
   const [sliderProps, setSliderProps] = useState(sliderInit);
-  const slidesSlider = slides.map(el => {
-    return <SlideSV src={el} />
+  const slidesSlider = slides.map((el) => {
+    return <SlideSV src={el} />;
   });
 
-  const sliderSlides = slidesSlider.map((el: any, index: number) => {
+  const sliderSlides = slidesSlider.map((el: JSX.Element, index: number) => {
     return (
-      <SwiperSlide style={{ height: '100%' }} className={style.SwiperSliderContainer} virtualIndex={index}>{el}</SwiperSlide>
-    )
-  })
+      <SwiperSlide
+        style={{ height: '100%' }}
+        className={style.SwiperSliderContainer}
+        virtualIndex={index}
+      >
+        {el}
+      </SwiperSlide>
+    );
+  });
 
   const changeSlider = (state: TSliderInit) => {
     setSliderProps(() => {
       return state;
-    })
-  }
+    });
+  };
 
   return (
     <div className={style.swiperContainer}>
@@ -87,34 +83,40 @@ const SliderSV: React.FC<ISliderSVProps> = ({ slides = defaulSlides }) => {
 
       <Swiper
         key={Date.now()}
-        modules={[FreeMode, Autoplay, Mousewheel, EffectCoverflow, EffectCards, EffectCreative, EffectCube, EffectFade, EffectFlip, Navigation, Pagination]}
+        modules={[
+          FreeMode,
+          Autoplay,
+          Mousewheel,
+          EffectCoverflow,
+          EffectCards,
+          EffectCreative,
+          EffectCube,
+          EffectFade,
+          EffectFlip,
+          Navigation,
+          Pagination,
+        ]}
         spaceBetween={sliderProps.spaceBetween.toString()}
         navigation={sliderProps.navigation}
         pagination={sliderProps.pagination}
         slidesPerView={sliderProps.slidesPerView}
-
         coverflowEffect={{
           rotate: 0,
           stretch: 0,
           depth: 100,
           modifier: 2.5,
           slideShadows: false,
-        }
-        }
-
+        }}
         cubeEffect={{
           shadow: true,
           slideShadows: true,
           shadowOffset: 20,
-          shadowScale: 0.94
+          shadowScale: 0.94,
         }}
-
         cardsEffect={{
           slideShadows: false,
           perSlideOffset: 20,
-
         }}
-
         grabCursor={true}
         loop={sliderProps.loop}
         effect={sliderProps.effect}
@@ -123,7 +125,7 @@ const SliderSV: React.FC<ISliderSVProps> = ({ slides = defaulSlides }) => {
         {sliderSlides}
       </Swiper>
     </div>
-  )
-}
+  );
+};
 
 export default SliderSV;

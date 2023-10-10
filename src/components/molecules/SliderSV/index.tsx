@@ -1,3 +1,3 @@
-import SliderSV from "./SliderSV";
+import SliderSV from './SliderSV';
 
 export default SliderSV;

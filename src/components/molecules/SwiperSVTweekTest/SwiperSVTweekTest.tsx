@@ -22,7 +22,10 @@ interface ISwiperSVTweek {
 }
 
 const SwiperSVTweekTest: React.FC<ISwiperSVTweek> = (props) => {
+
   const [tweekVisible, setTweekVisible] = useState(false);
+  const [mainTweekClasses, setMainTweekClasses] = useState([style.SwiperSVTweek, style.hiden]);
+
   const sliderStyle = props.value.effect;
   const loopChecked = props.value.loop;
   const spaceBetween = props.value.spaceBetween;
@@ -30,7 +33,6 @@ const SwiperSVTweekTest: React.FC<ISwiperSVTweek> = (props) => {
   const navigation = props.value.navigation;
   const pagination = props.value.pagination;
 
-  const [mainTweekClasses, setMainTweekClasses] = useState([style.SwiperSVTweek, style.hiden]);
 
   const onChangeLoop = (event: any) => {
     // console.log('Loop is', event.target.checked)
@@ -65,6 +67,10 @@ const SwiperSVTweekTest: React.FC<ISwiperSVTweek> = (props) => {
     props.changeSlider((state: any) => {
       const effect = event.target.value as string;
       let newState = { ...state, effect: effect };
+      let slidesPerView: number | string = 'auto';
+      if (effect === sliderStyle.cards) {
+        newState.slidesPerView = 1;
+      };
       return newState;
 
     })

@@ -3,9 +3,12 @@ import {
   Autoplay,
   Mousewheel,
   EffectCards,
+  EffectCube,
+  EffectCoverflow,
+  EffectFade,
+  EffectFlip,
   Navigation,
   Pagination,
-  EffectCube
 } from 'swiper/modules'
 import SlideSV from "../../atoms/SlideSV";
 
@@ -17,6 +20,9 @@ import 'swiper/scss/navigation';
 import 'swiper/scss/pagination';
 import 'swiper/scss/effect-cards';
 import 'swiper/scss/effect-cube';
+import 'swiper/scss/effect-coverflow';
+import 'swiper/scss/effect-flip';
+import 'swiper/scss/effect-fade';
 
 import SwiperSVTweekTest from "../SwiperSVTweekTest";
 import { useEffect, useState } from "react";
@@ -33,7 +39,7 @@ const sliderInit = {
   navigation: true,
   pagination: true,
   spaceBetween: 10,
-  slidesPerView: 1,
+  slidesPerView: 'auto',
 }
 
 interface ISliderSVProps {
@@ -42,7 +48,7 @@ interface ISliderSVProps {
 }
 
 
-const SliderSVCardsTest: React.FC<ISliderSVProps> = ({ slides = defaulSlides, effect = 'default' }) => {
+const SliderSVCardsTest: React.FC<ISliderSVProps> = ({ slides = defaulSlides }) => {
   const [sliderPropsTest, setSliderPropsTest] = useState(sliderInit);
   const slidesSlider = slides.map(el => {
     return <SlideSV src={el} />
@@ -50,7 +56,7 @@ const SliderSVCardsTest: React.FC<ISliderSVProps> = ({ slides = defaulSlides, ef
 
   // const sliderProps: TSliderProp = props.properties;
   // const effect = props.effect;
-  console.log(effect);
+  // console.log(effect);
 
   const sliderSlides = slidesSlider.map((el: any, index: number) => {
     return (
@@ -71,7 +77,7 @@ const SliderSVCardsTest: React.FC<ISliderSVProps> = ({ slides = defaulSlides, ef
 
       <Swiper
         key={Date.now()}
-        modules={[Autoplay, Mousewheel, EffectCards, EffectCube, Navigation, Pagination]}
+        modules={[Autoplay, Mousewheel, EffectCards, EffectCube, EffectCoverflow, EffectFade, EffectFlip, Navigation, Pagination]}
         // modules={[Virtual]}
         spaceBetween={sliderPropsTest.spaceBetween.toString()}
         navigation={sliderPropsTest.navigation}
@@ -100,8 +106,6 @@ const SliderSVCardsTest: React.FC<ISliderSVProps> = ({ slides = defaulSlides, ef
         }}
 
         grabCursor={true}
-
-        // slidesPerView={'auto'}
 
         // mousewheel
         // freeMode

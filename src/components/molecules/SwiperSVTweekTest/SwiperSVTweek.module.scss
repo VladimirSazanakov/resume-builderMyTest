@@ -4,16 +4,36 @@
   display: flex;
   flex-direction: column;
   position: absolute;
+  top: 0;
+  left: 0px;
   z-index: 10;
   height: min-content;
   width: 200px;
   background-color: rgba(250, 250, 250, 0.587);
   // opacity: 0.5;
   border-radius: 4px;
+  border-top-right-radius: 0;
   padding: 4px;
   color: black;
   // left: -150px;
   transition: all 1s;
+}
+
+.TweekButton {
+  display: flex;
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  right: -40px;
+  top: 0;
+  padding: 0;
+  margin: 0;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(250, 250, 250, 0.587);
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+
 }
 
 .title {
@@ -35,8 +55,9 @@
   font-size: 10px;
 }
 
-.disable {
-  max-height: 0px;
-  visibility: false;
-  display: false;
+.hiden {
+  // max-height: 0px;
+  // visibility: false;
+  // display: false;
+  left: -208px;
 }

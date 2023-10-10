@@ -22,7 +22,7 @@ interface ISwiperSVTweek {
 }
 
 const SwiperSVTweekTest: React.FC<ISwiperSVTweek> = (props) => {
-  const [tweekVisible, setTweekVisible] = useState(true);
+  const [tweekVisible, setTweekVisible] = useState(false);
   const sliderStyle = props.value.effect;
   const loopChecked = props.value.loop;
   const spaceBetween = props.value.spaceBetween;
@@ -30,7 +30,7 @@ const SwiperSVTweekTest: React.FC<ISwiperSVTweek> = (props) => {
   const navigation = props.value.navigation;
   const pagination = props.value.pagination;
 
-  const [mainTweekClasses, setMainTweekClasses] = useState([style.mainTweek]);
+  const [mainTweekClasses, setMainTweekClasses] = useState([style.SwiperSVTweek, style.hiden]);
 
   const onChangeLoop = (event: any) => {
     // console.log('Loop is', event.target.checked)
@@ -94,7 +94,7 @@ const SwiperSVTweekTest: React.FC<ISwiperSVTweek> = (props) => {
       setTweekVisible(false)
       setMainTweekClasses((state) => {
         let newState = [...state]
-        newState.push(style.disable);
+        newState.push(style.hiden);
         return newState;
       })
     } else {
@@ -110,8 +110,9 @@ const SwiperSVTweekTest: React.FC<ISwiperSVTweek> = (props) => {
   }
 
   return (
-    <div className={style.SwiperSVTweek}>
-      <div key={Date.now()} className={mainTweekClasses.join(' ')}>
+    <div className={mainTweekClasses.join(' ')}>
+      <button className={style.TweekButton} onClick={handleButton}>Settings</button>
+      <div key={Date.now()} className={style.mainTweek}>
         <h6 className={style.title}>Slider style</h6>
         <Select
           labelId="SliderStyle"
@@ -120,8 +121,9 @@ const SwiperSVTweekTest: React.FC<ISwiperSVTweek> = (props) => {
           label="Slider Style"
           onChange={handleSliderStyle}
           size="small"
+
         >
-          <MenuItem style={{ fontSize: 10, }} value={SliderEffects.Default}>Default</MenuItem>
+          <MenuItem value={SliderEffects.Default}>Default</MenuItem>
           <MenuItem value={SliderEffects.Fade}>Fade</MenuItem>
           <MenuItem value={SliderEffects.Cards}>Cards</MenuItem>
           <MenuItem value={SliderEffects.Coverflow}>Coverflow</MenuItem>
@@ -129,13 +131,19 @@ const SwiperSVTweekTest: React.FC<ISwiperSVTweek> = (props) => {
 
         </Select>
 
-        <FormControlLabel className={style.checkButtons} control={<Checkbox checked={loopChecked} onChange={(event) => onChangeLoop(event)} />} label="Use Loop" />
-        <FormControlLabel control={<Checkbox checked={navigation} onChange={(event) => onChangeNavigation(event)} />} label="Use Navigation" />
-        <FormControlLabel control={<Checkbox checked={pagination} onChange={(event) => onChangePagination(event)} />} label="Use Pagination" />
+        <FormControlLabel className={style.checkButtons} control={<Checkbox size='small' checked={loopChecked} onChange={(event) => onChangeLoop(event)} />} label="Use Loop" />
+        <FormControlLabel control={<Checkbox size="small" checked={navigation} onChange={(event) => onChangeNavigation(event)} />} label="Use Navigation" />
+        <FormControlLabel control={<Checkbox size="small" checked={pagination} onChange={(event) => onChangePagination(event)} />} label="Use Pagination" />
+
+        {/* <div className={style.checkButtons}>
+          <input type="checkbox" id="testCheckBox" />
+          <label for="testCheckBox">Test</label>
+        </div> */}
+
         <TextField style={{ marginBottom: 5 }} label="Space Between" type="number" value={spaceBetween} onChange={handleSpaceBetween} />
-        <TextField label="Slides Per View" type="number" value={slidesPerView} onChange={handleSlidesPerView} />
+        {/* <TextField label="Slides Per View" type="number" value={slidesPerView} onChange={handleSlidesPerView} /> */}
       </div>
-      <Button variant="text" onClick={handleButton}>settings</Button>
+      {/* <Button variant="text" onClick={handleButton}>settings</Button> */}
     </div>
   );
 };

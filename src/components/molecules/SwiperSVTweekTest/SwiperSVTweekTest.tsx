@@ -23,9 +23,7 @@ type TSliderInit = {
 }
 
 interface ISwiperSVTweek {
-  props?: any
-  sliderPropsTest?: any
-  changeSlider: any,
+  changeSlider: (state: TSliderInit) => void,
   value: TSliderInit;
 }
 
@@ -33,7 +31,7 @@ const SwiperSVTweekTest: React.FC<ISwiperSVTweek> = (props) => {
 
   const [tweekVisible, setTweekVisible] = useState(false);
   const [mainTweekClasses, setMainTweekClasses] = useState([style.SwiperSVTweek, style.hiden]);
-
+  const state = props.value;
   const sliderStyle = props.value.effect;
   const loopChecked = props.value.loop;
   const spaceBetween = props.value.spaceBetween;
@@ -44,69 +42,47 @@ const SwiperSVTweekTest: React.FC<ISwiperSVTweek> = (props) => {
 
   const onChangeLoop = (event: any) => {
     // console.log('Loop is', event.target.checked)
-    props.changeSlider((state: TSliderInit) => {
-      const loop = event.target.checked;
-      let newState = { ...state, loop: loop };
-      return newState;
-
-    })
+    const loop = event.target.checked;
+    let newState = { ...state, loop: loop };
+    props.changeSlider(newState)
   }
+
   const onChangeNavigation = (event: any) => {
     // console.log('Loop is', event.target.checked)
-    props.changeSlider((state: any) => {
-      const navigation = event.target.checked;
-      let newState = { ...state, navigation: navigation };
-      return newState;
-
-    })
+    const navigation = event.target.checked;
+    let newState = { ...state, navigation: navigation };
+    props.changeSlider(newState);
   }
   const onChangePagination = (event: any) => {
-    // console.log('Loop is', event.target.checked)
-    props.changeSlider((state: any) => {
-      const pagination = event.target.checked;
-      let newState = { ...state, pagination: pagination };
-      return newState;
-
-    })
+    // // console.log('Loop is', event.target.checked)
+    const pagination = event.target.checked;
+    let newState = { ...state, pagination: pagination };
+    props.changeSlider(newState)
   }
 
   const handleSliderStyle = (event: SelectChangeEvent) => {
     // setSliderStyle(event.target.value as string);
-    props.changeSlider((state: any) => {
-      const effect = event.target.value as string;
-      let newState = { ...state, effect: effect };
-      let slidesPerView: number | string = 'auto';
+    const effect = event.target.value as string;
+    let newState = { ...state, effect: effect };
+    let slidesPerView: number | string = 'auto';
 
-      console.log('effect is', effect);
+    if (effect == SliderEffects.Cards || effect == SliderEffects.Flip || effect == SliderEffects.Fade) {
+      newState.slidesPerView = 1;
+      console.log('state from tweek', newState);
+    } else {
+      newState.slidesPerView = 'auto';
+    };
 
-      if (effect == SliderEffects.Cards || effect == SliderEffects.Flip || effect == SliderEffects.Fade) {
-        newState.slidesPerView = 1;
-        console.log('state from tweek', newState);
-      } else {
-        newState.slidesPerView = 'auto';
-      };
-      return newState;
+    props.changeSlider(newState);
 
-    })
   }
 
   const handleSpaceBetween = (event: any) => {
-    props.changeSlider((state: any) => {
-      const space = event.target.value;
-      let newState = { ...state, spaceBetween: space };
-      return newState;
-
-    })
+    const space = event.target.value;
+    let newState = { ...state, spaceBetween: space };
+    props.changeSlider(newState);
   }
 
-  const handleSlidesPerView = (event: any) => {
-    props.changeSlider((state: any) => {
-      const slides = event.target.value;
-      let newState = { ...state, slidesPerView: slides };
-      return newState;
-
-    })
-  }
 
   const handleButton = (event: any) => {
     if (tweekVisible) {

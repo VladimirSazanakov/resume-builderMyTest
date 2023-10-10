@@ -27,7 +27,7 @@ import 'swiper/css/effect-fade';
 import 'swiper/scss/effect-coverflow';
 
 import SwiperSVTweek from "../SwiperSVTweek";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { defaulSlides } from "./DefaultSlides";
 
 type TSliderInit = {
@@ -75,9 +75,15 @@ const SliderSV: React.FC<ISliderSVProps> = ({ slides = defaulSlides }) => {
     )
   })
 
+  const changeSlider = (state: TSliderInit) => {
+    setSliderProps(() => {
+      return state;
+    })
+  }
+
   return (
     <div className={style.swiperContainer}>
-      <SwiperSVTweek changeSlider={setSliderProps} value={sliderProps} />
+      <SwiperSVTweek changeSlider={changeSlider} value={sliderProps} />
 
       <Swiper
         key={Date.now()}

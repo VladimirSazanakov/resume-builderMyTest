@@ -73,16 +73,18 @@ const SliderSVCardsTest: React.FC<ISliderSVProps> = ({ slides = defaulSlides }) 
     )
   })
 
-  useEffect(() => {
-    console.log(sliderPropsTest);
-  }, [sliderPropsTest])
+  const CangeSlider = (state: TSliderInit) => {
+    setSliderPropsTest(() => {
+      return state;
+    })
+  }
 
 
   ///------------------------------------------virtul
 
   return (
     <div className={style.swiperContainer}>
-      <SwiperSVTweekTest changeSlider={setSliderPropsTest} value={sliderPropsTest} />
+      <SwiperSVTweekTest changeSlider={CangeSlider} value={sliderPropsTest} />
 
       <Swiper
         key={Date.now()}

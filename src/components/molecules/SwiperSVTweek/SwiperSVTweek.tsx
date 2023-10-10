@@ -13,16 +13,24 @@ enum SliderEffects {
   Creative = 'creative',
 }
 
+type TSliderInit = {
+  effect: string,
+  loop: boolean,
+  navigation: boolean,
+  pagination: boolean,
+  spaceBetween: number,
+  slidesPerView: number | 'auto',
+}
 
 interface ISwiperSVTweek {
-  props?: any
-  sliderPropsTest?: any
-  changeSlider?: any
-  value?: any;
+  changeSlider: any
+  value: TSliderInit;
 }
 
 const SwiperSVTweek: React.FC<ISwiperSVTweek> = (props) => {
   const [tweekVisible, setTweekVisible] = useState(false);
+  const [mainTweekClasses, setMainTweekClasses] = useState([style.SwiperSVTweek, style.hiden]);
+
   const sliderStyle = props.value.effect;
   const loopChecked = props.value.loop;
   const spaceBetween = props.value.spaceBetween;
@@ -30,10 +38,8 @@ const SwiperSVTweek: React.FC<ISwiperSVTweek> = (props) => {
   const navigation = props.value.navigation;
   const pagination = props.value.pagination;
 
-  const [mainTweekClasses, setMainTweekClasses] = useState([style.mainTweek, style.disable]);
 
   const onChangeLoop = (event: any) => {
-    // console.log('Loop is', event.target.checked)
     props.changeSlider((state: any) => {
       const loop = event.target.checked;
       let newState = { ...state, loop: loop };
@@ -42,7 +48,6 @@ const SwiperSVTweek: React.FC<ISwiperSVTweek> = (props) => {
     })
   }
   const onChangeNavigation = (event: any) => {
-    // console.log('Loop is', event.target.checked)
     props.changeSlider((state: any) => {
       const navigation = event.target.checked;
       let newState = { ...state, navigation: navigation };
@@ -51,7 +56,6 @@ const SwiperSVTweek: React.FC<ISwiperSVTweek> = (props) => {
     })
   }
   const onChangePagination = (event: any) => {
-    // console.log('Loop is', event.target.checked)
     props.changeSlider((state: any) => {
       const pagination = event.target.checked;
       let newState = { ...state, pagination: pagination };
@@ -61,10 +65,15 @@ const SwiperSVTweek: React.FC<ISwiperSVTweek> = (props) => {
   }
 
   const handleSliderStyle = (event: SelectChangeEvent) => {
-    // setSliderStyle(event.target.value as string);
-    props.changeSlider((state: any) => {
+    props.changeSlider((state: TSliderInit) => {
       const effect = event.target.value as string;
       let newState = { ...state, effect: effect };
+      if (effect == SliderEffects.Cards || effect == SliderEffects.Flip || effect == SliderEffects.Fade) {
+        newState.slidesPerView = 1;
+        console.log('state from tweek', newState);
+      } else {
+        newState.slidesPerView = 'auto';
+      };
       return newState;
 
     })
@@ -94,7 +103,7 @@ const SwiperSVTweek: React.FC<ISwiperSVTweek> = (props) => {
       setTweekVisible(false)
       setMainTweekClasses((state) => {
         let newState = [...state]
-        newState.push(style.disable);
+        newState.push(style.hiden);
         return newState;
       })
     } else {
@@ -106,13 +115,13 @@ const SwiperSVTweek: React.FC<ISwiperSVTweek> = (props) => {
         return newState;
       })
     };
-    console.log(mainTweekClasses);
   }
 
   return (
-    <div className={style.SwiperSVTweek}>
-      <div key={Date.now()} className={mainTweekClasses.join(' ')}>
-        <InputLabel size="small" id='SliderStyle'>Slider Style</InputLabel>
+    <div className={mainTweekClasses.join(' ')}>
+      <button className={style.TweekButton} onClick={handleButton}>Settings</button>
+      <div key={Date.now()} className={style.mainTweek}>
+        <h6 className={style.title}>Slider style</h6>
         <Select
           labelId="SliderStyle"
           id="SliderStyleSelect"
@@ -133,9 +142,7 @@ const SwiperSVTweek: React.FC<ISwiperSVTweek> = (props) => {
         <FormControlLabel control={<Checkbox checked={navigation} onChange={(event) => onChangeNavigation(event)} />} label="Use Navigation" />
         <FormControlLabel control={<Checkbox checked={pagination} onChange={(event) => onChangePagination(event)} />} label="Use Pagination" />
         <TextField label="Space Between" type="number" value={spaceBetween} onChange={handleSpaceBetween} />
-        <TextField label="Slides Per View" type="number" value={slidesPerView} onChange={handleSlidesPerView} />
       </div>
-      <Button variant="text" onClick={handleButton}>settings</Button>
     </div>
   );
 };

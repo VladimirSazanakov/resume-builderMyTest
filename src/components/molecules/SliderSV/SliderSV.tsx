@@ -9,7 +9,6 @@ import {
   EffectFade,
   EffectCreative,
   EffectFlip,
-  Virtual,
   Navigation,
   Pagination
 } from 'swiper/modules'
@@ -17,10 +16,8 @@ import SlideSV from "../../atoms/SlideSV";
 
 import style from './SliderSV.module.scss';
 import './SliderSV.module.scss';
-// import './stile.css';
 
 import 'swiper/scss';
-import 'swiper/scss/virtual';
 import 'swiper/scss/navigation';
 import 'swiper/scss/pagination';
 import 'swiper/scss/effect-cards';
@@ -33,10 +30,14 @@ import SwiperSVTweek from "../SwiperSVTweek";
 import { useEffect, useState } from "react";
 import { defaulSlides } from "./DefaultSlides";
 
-// type TSliderProp = {
-//   spaceBetween: number,
-//   autoplay: boolean,
-// }
+type TSliderInit = {
+  effect: string,
+  loop: boolean,
+  navigation: boolean,
+  pagination: boolean,
+  spaceBetween: number,
+  slidesPerView: number | 'auto',
+}
 
 enum SliderEffects {
   Fade = 'fade',
@@ -47,13 +48,13 @@ enum SliderEffects {
   Creative = 'creative',
 }
 
-const sliderInit = {
+const sliderInit: TSliderInit = {
   effect: 'default',
   loop: false,
   navigation: true,
   pagination: true,
   spaceBetween: 10,
-  slidesPerView: 1,
+  slidesPerView: 'auto',
 }
 
 interface ISliderSVProps {
@@ -62,15 +63,11 @@ interface ISliderSVProps {
 }
 
 
-const SliderSV: React.FC<ISliderSVProps> = ({ slides = defaulSlides, effect = 'default' }) => {
-  const [sliderPropsTest, setSliderPropsTest] = useState(sliderInit);
+const SliderSV: React.FC<ISliderSVProps> = ({ slides = defaulSlides }) => {
+  const [sliderProps, setSliderProps] = useState(sliderInit);
   const slidesSlider = slides.map(el => {
     return <SlideSV src={el} />
   });
-
-  // const sliderProps: TSliderProp = props.properties;
-  // const effect = props.effect;
-  console.log(effect);
 
   const sliderSlides = slidesSlider.map((el: any, index: number) => {
     return (
@@ -78,25 +75,17 @@ const SliderSV: React.FC<ISliderSVProps> = ({ slides = defaulSlides, effect = 'd
     )
   })
 
-  useEffect(() => {
-    console.log(sliderPropsTest);
-  }, [sliderPropsTest])
-
-
-  ///------------------------------------------virtul
-
   return (
     <div className={style.swiperContainer}>
-      <SwiperSVTweek changeSlider={setSliderPropsTest} value={sliderPropsTest} />
+      <SwiperSVTweek changeSlider={setSliderProps} value={sliderProps} />
 
       <Swiper
         key={Date.now()}
-        modules={[FreeMode, Autoplay, Mousewheel, EffectCoverflow, EffectCards, EffectCreative, EffectCube, EffectFade, EffectFlip, Virtual, Navigation, Pagination]}
-        // modules={[Virtual]}
-        spaceBetween={sliderPropsTest.spaceBetween.toString()}
-        navigation={sliderPropsTest.navigation}
-        pagination={sliderPropsTest.pagination}
-        slidesPerView={sliderPropsTest.slidesPerView}
+        modules={[FreeMode, Autoplay, Mousewheel, EffectCoverflow, EffectCards, EffectCreative, EffectCube, EffectFade, EffectFlip, Navigation, Pagination]}
+        spaceBetween={sliderProps.spaceBetween.toString()}
+        navigation={sliderProps.navigation}
+        pagination={sliderProps.pagination}
+        slidesPerView={sliderProps.slidesPerView}
 
         coverflowEffect={{
           rotate: 0,
@@ -107,54 +96,27 @@ const SliderSV: React.FC<ISliderSVProps> = ({ slides = defaulSlides, effect = 'd
         }
         }
 
+        cubeEffect={{
+          shadow: true,
+          slideShadows: true,
+          shadowOffset: 20,
+          shadowScale: 0.94
+        }}
+
         cardsEffect={{
           slideShadows: false,
-          perSlideOffset: 15,
+          perSlideOffset: 20,
 
         }}
 
-        // slidesPerView={'auto'}
-
-        // mousewheel
-        // freeMode
-        // autoCorrect="auto"
-        // speed={5000}
-
-        loop={sliderPropsTest.loop}
-        // autoplay={{
-        //   delay: 0,
-        //   waitForTransition: true,
-        // }
-        // }
-
-        effect={sliderPropsTest.effect}
-        // coverflowEffect={{depth: 100 ,rotate:50,modifier: 1, slideShadows: true}}
-
+        grabCursor={true}
+        loop={sliderProps.loop}
+        effect={sliderProps.effect}
         className={style.swiper1}
-      // onSlideChange={() => console.log('slide change')}
-      // onSwiper={(swiper: any) => console.log('swiper')}
-      // initialSlide={0}
       >
         {sliderSlides}
-        {/* <SwiperSlide className={style.SwiperSliderContainer}><Slide /></SwiperSlide>
-        <SwiperSlide className={style.SwiperSliderContainer}><Slide /></SwiperSlide>
-        <SwiperSlide className={style.SwiperSliderContainer}><Slide /></SwiperSlide>
-        <SwiperSlide className={style.SwiperSliderContainer}><Slide /></SwiperSlide>
-        <SwiperSlide className={style.SwiperSliderContainer}><Slide /></SwiperSlide>
-        <SwiperSlide className={style.SwiperSliderContainer}><Slide /></SwiperSlide>
-        <SwiperSlide className={style.SwiperSliderContainer}><Slide /></SwiperSlide>
-        <SwiperSlide className={style.SwiperSliderContainer}><Slide /></SwiperSlide>
-        <SwiperSlide className={style.SwiperSliderContainer}><Slide /></SwiperSlide>
-        <SwiperSlide className={style.SwiperSliderContainer}><Slide /></SwiperSlide>
-  <SwiperSlide className={style.SwiperSliderContainer}><Slide /></SwiperSlide> */}
-
-
-
       </Swiper>
     </div>
-
-
-
   )
 }
 

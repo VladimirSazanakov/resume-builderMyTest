@@ -60,7 +60,7 @@ interface ISliderSVProps {
 const SliderSVCardsTest: React.FC<ISliderSVProps> = ({ slides = defaulSlides }) => {
   const [sliderPropsTest, setSliderPropsTest] = useState(sliderInit);
   const slidesSlider = slides.map(el => {
-    return <SlideSV src={el} />
+    return <SlideSV src={el} height={'250px'} />
   });
 
   // const sliderProps: TSliderProp = props.properties;
@@ -69,7 +69,7 @@ const SliderSVCardsTest: React.FC<ISliderSVProps> = ({ slides = defaulSlides }) 
 
   const sliderSlides = slidesSlider.map((el: any, index: number) => {
     return (
-      <SwiperSlide style={{ height: '100%', width: '200', alignItems: 'center', justifyContent: 'center' }} className={style.SwiperSliderContainer} virtualIndex={index}>{el}</SwiperSlide>
+      <SwiperSlide style={{ height: '100%' }} className={style.SwiperSliderContainer} virtualIndex={index}>{el}</SwiperSlide>
     )
   })
 

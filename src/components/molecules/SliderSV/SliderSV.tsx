@@ -30,7 +30,7 @@ import SwiperSVTweek from '../SwiperSVTweek';
 import { useState } from 'react';
 import { defaulSlides } from './DefaultSlides';
 
-type TSliderInit = {
+export type TSliderInit = {
   effect: string;
   loop: boolean;
   navigation: boolean;
@@ -57,7 +57,7 @@ interface ISliderSVProps {
 
 const SliderSV: React.FC<ISliderSVProps> = ({ slides = defaulSlides }) => {
   const [sliderProps, setSliderProps] = useState(sliderInit);
-  let slideHeight = sliderProps.slideHeight;
+  const slideHeight = sliderProps.slideHeight;
   const slidesSlider = slides.map((el) => {
     return <SlideSV src={el} height={slideHeight} />;
   });

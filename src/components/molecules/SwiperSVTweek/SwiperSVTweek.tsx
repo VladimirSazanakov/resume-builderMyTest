@@ -9,6 +9,17 @@ import {
   MenuItem,
   TextField,
 } from '@mui/material';
+import { TSliderInit } from '../SliderSV/SliderSV';
+
+enum SliderEffects {
+  Default = 'default',
+  Fade = 'fade',
+  Cube = 'cube',
+  Coverflow = 'coverflow',
+  Flip = 'flip',
+  Cards = 'cards',
+  Creative = 'creative',
+}
 
 enum EslideHeight {
   auto = 'auto',
@@ -22,26 +33,6 @@ enum EslideHeight {
   px225 = '225px',
 }
 
-enum SliderEffects {
-  Default = 'default',
-  Fade = 'fade',
-  Cube = 'cube',
-  Coverflow = 'coverflow',
-  Flip = 'flip',
-  Cards = 'cards',
-  Creative = 'creative',
-}
-
-type TSliderInit = {
-  effect: string;
-  loop: boolean;
-  navigation: boolean;
-  pagination: boolean;
-  spaceBetween: number;
-  slideHeight?: number | string | undefined;
-  slidesPerView: number | 'auto';
-};
-
 interface ISwiperSVTweek {
   changeSlider: (state: TSliderInit) => void;
   value: TSliderInit;
@@ -54,6 +45,7 @@ const SwiperSVTweek: React.FC<ISwiperSVTweek> = (props) => {
   const stateSlider = props.value;
   const { effect, loop, spaceBetween, navigation, pagination } = props.value;
   const slideHeight = stateSlider.slideHeight?.toString();
+
   //Функция меняет значение кольцевой прокрутки
   const onChangeLoop = (event: React.ChangeEvent<HTMLInputElement>) => {
     const loop = event.target.checked;
@@ -85,7 +77,6 @@ const SwiperSVTweek: React.FC<ISwiperSVTweek> = (props) => {
       effect == SliderEffects.Fade
     ) {
       newState.slidesPerView = 1;
-      console.log('state from tweek', newState);
     } else {
       newState.slidesPerView = 'auto';
     }
@@ -103,11 +94,13 @@ const SwiperSVTweek: React.FC<ISwiperSVTweek> = (props) => {
   const handleSlideHeight = (event: SelectChangeEvent) => {
     // setSliderStyle(event.target.value as string);
     const height = event.target.value;
-    let newState = { ...stateSlider, slideHeight: height };
+    const newState = { ...stateSlider, slideHeight: height };
     props.changeSlider(newState);
-  }
+  };
 
   const buttonRef = React.createRef<HTMLButtonElement>();
+
+  //скрывает и раскрывает меню настроек
   const handleButton = () => {
     if (tweekVisible) {
       buttonRef?.current?.innerHTML ? (buttonRef.current.innerHTML = 'Settings') : null;
@@ -175,7 +168,7 @@ const SwiperSVTweek: React.FC<ISwiperSVTweek> = (props) => {
           onChange={handleSpaceBetween}
           style={{ marginBottom: 5 }}
         />
-
+        <h6 className={style.titleh6}>Slide height</h6>
         <Select
           labelId="slideHeight"
           id="SlideHeightSelect"
@@ -183,7 +176,6 @@ const SwiperSVTweek: React.FC<ISwiperSVTweek> = (props) => {
           label="Slide Height"
           onChange={handleSlideHeight}
           size="small"
-
         >
           <MenuItem value={EslideHeight.auto}>Auto</MenuItem>
           <MenuItem value={EslideHeight.px50}>50px</MenuItem>

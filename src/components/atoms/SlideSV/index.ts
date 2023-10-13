@@ -1,2 +1,2 @@
-import SlideSV from "./SlideSV";
+import SlideSV from './SlideSV';
 export default SlideSV;

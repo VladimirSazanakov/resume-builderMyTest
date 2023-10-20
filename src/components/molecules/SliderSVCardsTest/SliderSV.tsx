@@ -24,26 +24,17 @@ import 'swiper/scss/effect-coverflow';
 import 'swiper/scss/effect-flip';
 import 'swiper/scss/effect-fade';
 
-import SwiperSVTweekTest from "../SwiperSVTweekTest";
+import SwiperSVTweekTest from "./SwiperSVTweekTest";
 import { useEffect, useState } from "react";
 import { defaulSlides } from "./DefaultSlides";
+import { ISliderSVProps, TSliderInit } from "./types";
 
 // type TSliderProp = {
 //   spaceBetween: number,
 //   autoplay: boolean,
 // }
 
-type TSliderInit = {
-  effect: string,
-  loop: boolean,
-  navigation: boolean,
-  pagination: boolean,
-  spaceBetween: number,
-  slideHeight?: number | string | undefined,
-  slidesPerView: number | 'auto',
-}
-
-const sliderInit: TSliderInit = {
+export const sliderInit: TSliderInit = {
   effect: 'default',
   loop: false,
   navigation: true,
@@ -53,15 +44,10 @@ const sliderInit: TSliderInit = {
   slidesPerView: 'auto',
 }
 
-interface ISliderSVProps {
-  slides?: Array<string>
-  effect?: string
-}
-
-
 const SliderSVCardsTest: React.FC<ISliderSVProps> = ({ slides = defaulSlides }) => {
   const [sliderPropsTest, setSliderPropsTest] = useState(sliderInit);
   let slideHeight = sliderPropsTest.slideHeight;
+
   const slidesSlider = slides.map(el => {
     return <SlideSV src={el} height={slideHeight} />
   });
@@ -109,7 +95,6 @@ const SliderSVCardsTest: React.FC<ISliderSVProps> = ({ slides = defaulSlides }) 
         cardsEffect={{
           slideShadows: false,
           perSlideOffset: 20,
-
         }}
 
         cubeEffect={{

@@ -6,8 +6,8 @@ const SliderSVPage: React.FC = () => {
 
   return (
     <>
-      <SliderSV />
-      {/* <SliderSVCardsTest /> */}
+      {/* <SliderSV /> */}
+      <SliderSVCardsTest />
     </>
   )
 }
